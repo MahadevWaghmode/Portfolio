@@ -2,8 +2,7 @@ import { Box, Grid, Icon, Stack, Typography } from "@mui/material";
 import Heading from "./Heading";
 import Marquee from "react-fast-marquee";
 import { useState } from "react";
-import SkillCard from "./SkillCard";
-import { Scale } from "@mui/icons-material";
+
 
 const Skills = [
   { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg", category: "Languages" },
@@ -36,7 +35,7 @@ export default function SkillsSection() {
 
   return (
     <Box sx={{ mt: 8, pt: 2 }}>
-      <Heading heading="Technical Skills" />
+      <Heading heading="Skills" />
       <Box p={5}>
         <Marquee
           gradient={false}

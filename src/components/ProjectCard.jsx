@@ -14,122 +14,142 @@ export default function ProjectCard({ project }) {
     <Card
       sx={(theme) => ({
         p: 3,
-        maxWidth: 520,
         borderRadius: 4,
-        background: theme.palette.background.paper,
-        color: theme.palette.text.primary,
-        border: `1px solid ${theme.palette.divider}`,
-        boxShadow: "0 12px 28px rgba(0,0,0,0.12)",
         position: "relative",
-        transition: "all .35s ease",
+        overflow: "hidden",
+        background: theme.palette.background.paper,
+        border: `1px solid ${theme.palette.divider}`,
+        transition: "all .4s ease",
+        backdropFilter: "blur(1px)",
+
+        // 🔥 Top Gradient Glow Line
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "3px",
+          background: `linear-gradient(90deg,
+            ${theme.palette.primary.main},
+            ${theme.palette.secondary.main}
+          )`,
+        },
+
         "&:hover": {
-          transform: "translateY(-8px)",
-          boxShadow: "0 18px 40px rgba(0,0,0,0.18)",
+          transform: "scale(1.02)",
           borderColor: theme.palette.primary.main,
+          boxShadow: `0 20px 50px ${theme.palette.primary.main}22`,
         },
       })}
     >
-      {/* Gradient Details Button */}
-      <Button
-        size="small"
-        sx={(theme) => ({
-          position: "absolute",
-          top: 20,
-          right: 20,
-          color: theme.palette.text.primary,
-          borderRadius: "999px",
-          px: 2,
-          fontWeight: 600,
-          background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-          boxShadow: `0 4px 12px ${theme.palette.primary.main}66`,
-          textTransform: "none",
-          "&:hover": {
-            background: `linear-gradient(135deg, ${theme.palette.secondary.main}, ${theme.palette.primary.main})`,
-            boxShadow: `0 6px 18px ${theme.palette.primary.main}99`,
-          },
-        })}
-      >
-        Details
-      </Button>
-
       <CardContent sx={{ p: 0 }}>
-        <Typography variant="h5" fontWeight={700}>
-          {project.title}
-        </Typography>
+        {/* Header */}
+        <Stack spacing={0.5} mb={2}>
+          <Typography variant="h5" fontWeight={700}>
+            {project.title}
+          </Typography>
 
-        <Typography sx={(theme) => ({ color: theme.palette.text.secondary, mt: 0.5 })}>
-          <Box
-            component="span"
+          <Typography
+            variant="body2"
             sx={(theme) => ({
-              color: theme.palette.primary.main,
-              fontWeight: 500,
+              color: theme.palette.text.secondary,
             })}
           >
-            Period:
-          </Box>{" "}
-          {project.duration}
-        </Typography>
+            <Box
+              component="span"
+              sx={{ color: "primary.main", fontWeight: 600 }}
+            >
+              Period:
+            </Box>{" "}
+            {project.duration}
+          </Typography>
+        </Stack>
 
-        <Box component="ul" sx={{ pl: 2, mt: 2 }}>
-          {project.points.length > 0 ? (
+        {/* Description Points */}
+        <Box component="ul" sx={{ pl: 2, mb: 2 }}>
+          {project.points?.length ? (
             project.points.map((pt, idx) => (
               <Typography
-                component="li"
                 key={idx}
-                fontSize={14}
-                sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  mb: 0.7,
-                  lineHeight: 1.6,
-                })}
+                component="li"
+                variant="body2"
+                sx={{ mb: 0.8, lineHeight: 1.6 }}
               >
                 {pt}
               </Typography>
             ))
           ) : (
-            <Typography fontSize={14} sx={(theme) => ({ color: theme.palette.text.secondary })}>
+            <Typography variant="body2" color="text.secondary">
               No project details available.
             </Typography>
           )}
         </Box>
 
         {/* Tech Stack */}
-        <Stack direction="row" spacing={1} flexWrap="wrap" mt={2}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 1,
+            my: 2,
+          }}
+        >
           {project.techStack.map((tech) => (
             <Chip
               key={tech}
               label={tech}
               size="small"
               sx={(theme) => ({
-                backgroundColor: theme.palette.background.default,
-                color: theme.palette.primary.main,
-                border: `1px solid ${theme.palette.primary.light}`,
                 fontWeight: 500,
+                background: `${theme.palette.primary.main}15`,
+                color: theme.palette.primary.main,
+                border: `1px solid ${theme.palette.primary.main}40`,
+                maxWidth: "100%",
               })}
             />
           ))}
-        </Stack>
+        </Box>
 
-        {/* GitHub Button */}
-        <Stack mt={3}>
+        {/* Footer Buttons */}
+        <Stack direction="row" justifyContent="flex-start" gap={2} >
           <Button
             href={project.link}
-            variant="outlined"
+            target="_blank"
             startIcon={<GitHubIcon />}
             sx={(theme) => ({
-              alignSelf: "flex-start",
               textTransform: "none",
-              fontWeight: 500,
-              color: theme.palette.primary.main,
-              borderColor: theme.palette.primary.main,
+              fontWeight: 600,
+              background: `linear-gradient(135deg,
+                ${theme.palette.primary.main},
+                ${theme.palette.secondary.main}
+              )`,
+              color: "#fff",
+              px: 2.5,
+              borderRadius: "9px",
               "&:hover": {
-                bgcolor: theme.palette.primary.main,
-                color: theme.palette.primary.contrastText,
+                opacity: 0.9,
               },
             })}
           >
             View Code
           </Button>
+          <Button
+          variant="outlined"
+          disabled
+            sx={(theme) => ({
+              textTransform: "none",
+              fontWeight: 600,
+              px: 2.5,
+              borderRadius: "9px",
+              "&:hover": {
+                opacity: 0.9,
+              },
+            })}
+          >
+            Live Preview
+          </Button>
+
         </Stack>
       </CardContent>
     </Card>

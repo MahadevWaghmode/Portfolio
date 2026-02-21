@@ -65,9 +65,9 @@ export default function Projects() {
     <Box sx={{ mt: 8, pt:2 }}>
     <Heading heading="Projects" /> 
 
-      <Grid container spacing={4}>
+      <Grid container spacing={4} justifyContent="center">
         {projects.map((project, i) => (
-          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}>
+          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i} >
             <ProjectCard
               project={project}
             />
