@@ -73,13 +73,17 @@ export default function ContactUs() {
 
             <Stack direction="row" justifyContent="center" spacing={2} mt={2}>
               {[
-                { Icon: GitHubIcon, color: "text.primary" },
-                { Icon: LinkedInIcon, color: "#0A66C2" },
-                { Icon: EmailIcon, color: "text.primary" },
-                { Icon: Code, color: "success.main" },
-              ].map(({ Icon, color }, i) => (
+                { Icon: GitHubIcon, color: "text.primary", link: "https://github.com/MahadevWaghmode" },
+                { Icon: LinkedInIcon, color: "#0A66C2", link: "https://www.linkedin.com/in/mahadev-waghmode" },
+                { Icon: EmailIcon, color: "text.primary", link: "mailto:mahadevwaghmode2@gmail.com" },
+                { Icon: Code, color: "success.main", link: "https://www.hackerrank.com/profile/mahadevwaghmode2" },
+              ].map(({ Icon, color, link }, i) => (
                 <Button
                   key={i}
+                  component="a"
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   size="small"
                   variant="outlined"
                   sx={{

@@ -48,7 +48,7 @@ export default function Education() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <Box sx={{ py: 10, px: { xs: 2, md: 6 } }}>
+    <Box sx={{ mt:8,pt:2 }}>
       <Heading heading="Education Journey" />
       <Box
         sx={{
@@ -113,13 +113,13 @@ export default function Education() {
                     border: `1px solid ${theme.palette.divider}`,
                     transition: ".3s",
 
-                    "&:hover": {
-                      transform: "translateY(-6px)",
-                      boxShadow:
-                        theme.palette.mode === "light"
-                          ? "0 20px 40px rgba(0,0,0,.15)"
-                          : "0 20px 40px rgba(0,0,0,.45)",
-                    },
+                    // "&:hover": {
+                    //   transform: "translateY(-6px)",
+                    //   boxShadow:
+                    //     theme.palette.mode === "light"
+                    //       ? "0 20px 40px rgba(0,0,0,.15)"
+                    //       : "0 20px 40px rgba(0,0,0,.45)",
+                    // },
                   })}
                 >
                   <Typography fontWeight={800}>{edu.title}</Typography>

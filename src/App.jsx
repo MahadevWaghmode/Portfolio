@@ -2,17 +2,17 @@ import { Box } from "@mui/material";
 import Hero from "./components/Hero";
 import NavBar from "./components/NavBar";
 import Experience from "./components/Experience";
-import Skills from "./components/Skills";
 import Education from "./components/Education";
 import Projects from "./components/Projects";
 import { ToastContainer } from "react-toastify";
 import ContactUs from "./components/ContactUs";
+import SkillsSection from "./components/SkillsSection";
+
 
 function App() {
   return (
     <Box>
       <NavBar />
-
       {/* offset for fixed navbar */}
       <Box sx={{ pt: 10, px: 4, py: 2 }}>
         <Box id="home">
@@ -22,7 +22,8 @@ function App() {
           <Education />
         </Box>
         <Box id="skills">
-          <Skills />
+          <SkillsSection />
+      
         </Box>
         <Box id="projects">
           <Projects />
@@ -34,7 +35,6 @@ function App() {
           <ContactUs />
         </Box>
       </Box>
-
       <ToastContainer position="bottom-center" theme="dark" />
     </Box>
   );

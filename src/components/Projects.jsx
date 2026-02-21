@@ -62,7 +62,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <Box sx={{ px: { xs: 2, md: 6 }, py: 2 }}>
+    <Box sx={{ mt: 8, pt:2 }}>
     <Heading heading="Projects" /> 
 
       <Grid container spacing={4}>

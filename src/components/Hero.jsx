@@ -14,10 +14,6 @@ export default function Hero() {
         minHeight: 600,
         display: "flex",
         alignItems: "center",
-        background: {
-          xs: "radial-gradient(center at top , rgba(110,86,207,0.18), transparent 80%)",
-          md: "radial-gradient(closest-side at 80% , rgba(110,86,207,0.25), transparent 80%)",
-        },
       })}
     >
       <Container maxWidth="lg">
@@ -44,7 +40,7 @@ export default function Hero() {
                   gap: 1,
                 }}
               >
-                👋 Hello, I'm
+               👋 Hi, I'm
               </Typography>
 
               {/* Name */}
@@ -62,15 +58,17 @@ export default function Hero() {
               <Typography
                 variant="h3"
                 sx={{
-                  color: "text.secondary",
-                  fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
+                  background: "linear-gradient(180deg, #6e56cf 0%, #7c3aed 20%, #a855f7 40%, #c084fc 60%, #e879f9 80%, #b455f6 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  fontSize: { xs: "1.2rem", sm: "1.7rem", md: "2.2rem" },
                   fontWeight: 500,
                   mb: 2,
                 }}
               >
                 <Typewriter
                   options={{
-                    strings: ["Full Stack Developer", "Software Engineer"],
+                    strings: ["Java Developer", "Full Stack Developer"],
                     autoStart: true,
                     loop: true,
                     delay: 70,
@@ -92,9 +90,11 @@ export default function Hero() {
                   mx: { xs: "auto", md: 0 },
                 }}
               >
-                I create beautiful and responsive web applications with modern
-                technologies. Passionate about creating seamless user
-                experiences.
+                Passionate about building powerful backend systems
+                and elegant user interfaces.
+                I transform ideas into scalable,
+                high-performance digital solutions using Java,
+                Spring Boot, React, and modern cloud-ready technologies.
               </Typography>
 
               <Stack
@@ -105,7 +105,11 @@ export default function Hero() {
                   justifyContent: { xs: "center", md: "flex-start" },
                 }}
               >
-                <Button variant="contained" size="large">
+                <Button variant="contained" size="large" onClick={() => {
+                  document.getElementById("project")?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                }}>
                   View Projects
                 </Button>
 
@@ -126,6 +130,18 @@ export default function Hero() {
                   borderRadius: "50%",
                   background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
                   p: "6px",
+                  position: "relative",
+
+                  "&::before": {
+                    content: '""',
+                    position: "absolute",
+                    inset: -15,
+                    borderRadius: "50%",
+                    background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                    filter: "blur(40px)",
+                    opacity: 0.4,
+                    zIndex: -1,
+                  },
                 })}
               >
                 <Box
@@ -144,13 +160,17 @@ export default function Hero() {
 
               <Stack direction="row" spacing={2} mt={2}>
                 {[
-                  { Icon: GitHubIcon, color: "text.primary" },
-                  { Icon: LinkedInIcon, color: "#0A66C2" },
-                  { Icon: EmailIcon, color: "text.primary" },
-                  { Icon: Code, color: "success.main" },
-                ].map(({ Icon, color }, i) => (
+                  { Icon: GitHubIcon, color: "text.primary", link: "https://github.com/MahadevWaghmode" },
+                  { Icon: LinkedInIcon, color: "#0A66C2", link: "https://www.linkedin.com/in/mahadev-waghmode" },
+                  { Icon: EmailIcon, color: "text.primary", link: "mailto:mahadevwaghmode2@gmail.com" },
+                  { Icon: Code, color: "success.main", link: "https://www.hackerrank.com/profile/mahadevwaghmode2" },
+                ].map(({ Icon, color, link }, i) => (
                   <Button
                     key={i}
+                    component="a"
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     size="small"
                     variant="outlined"
                     sx={{

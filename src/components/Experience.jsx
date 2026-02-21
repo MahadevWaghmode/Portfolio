@@ -38,7 +38,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <Box sx={{ mt:4 }}>
+    <Box sx={{ mt:8, pt:2 }}>
      <Heading heading="Experience" />
 
       <Timeline
