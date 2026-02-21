@@ -146,7 +146,7 @@ export default function Hero() {
               >
                 <Box
                   component="img"
-                  src="/profile.png"
+                  src="./profile.png"
                   alt="profile"
                   sx={{
                     width: "100%",
