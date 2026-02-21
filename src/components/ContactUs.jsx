@@ -40,17 +40,43 @@ export default function ContactUs() {
         {/* LEFT PROFILE CARD */}
         <Grid size={{ xs: 12, md: 6 }}>
           <Card sx={{ p: 3, textAlign: "center", height: "100%" }}>
-            <Avatar
-              src="./profile.png"
-              sx={{
+            <Box
+              sx={(theme) => ({
+                position: "relative",
                 width: { xs: 120, sm: 170, md: 220 },
                 height: { xs: 120, sm: 170, md: 220 },
                 mx: "auto",
                 mb: 2,
-                border: "4px solid",
-                borderColor: "primary.main",
-              }}
-            />
+
+                // 🔥 Aura Glow Background
+                "&::before": {
+                  content: '""',
+                  position: "absolute",
+                  inset: -15,
+                  borderRadius: "50%",
+                  background: `radial-gradient(circle,
+        ${theme.palette.primary.main}55 0%,
+        ${theme.palette.primary.main}22 40%,
+        transparent 70%
+      )`,
+                  filter: "blur(25px)",
+                  zIndex: 0,
+                },
+              })}
+            >
+              <Avatar
+                src="./profile.png"
+                sx={(theme) => ({
+                  width: "100%",
+                  height: "100%",
+                  border: "4px solid",
+                  borderColor: theme.palette.primary.main,
+                  position: "relative",
+                  zIndex: 1,
+                  boxShadow: `0 0 25px ${theme.palette.primary.main}40`,
+                })}
+              />
+            </Box>
 
             <Typography
               sx={{
