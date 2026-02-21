@@ -8,6 +8,13 @@ import EmailIcon from "@mui/icons-material/Email";
 import { Code } from "@mui/icons-material";
 
 export default function Hero() {
+
+  const scrollTo = (id) => {
+  document.getElementById(id)?.scrollIntoView({
+    behavior: "smooth",
+  });
+};
+
   return (
     <Box
       sx={(theme) => ({
@@ -105,15 +112,11 @@ export default function Hero() {
                   justifyContent: { xs: "center", md: "flex-start" },
                 }}
               >
-                <Button variant="contained" size="large" onClick={() => {
-                  document.getElementById("project")?.scrollIntoView({
-                    behavior: "smooth",
-                  });
-                }}>
+                <Button variant="contained" size="large" onClick={() => scrollTo("projects")} >
                   View Projects
                 </Button>
 
-                <Button variant="outlined" size="large">
+                <Button variant="outlined" size="large" onClick={()=> scrollTo("contact")}>
                   Contact Me
                 </Button>
               </Stack>
