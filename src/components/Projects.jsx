@@ -8,7 +8,7 @@ const projects = [
     duration: "November 2023 – June 2024",
     description:
       "Quick Salon is a real-time salon booking platform that allows users to discover nearby salons, book appointments instantly, and manage schedules efficiently. It includes separate dashboards for admins and customers with secure authentication and location-based filtering.",
-    image: "/projects/quicksalon.png",
+    images: ["./projects/quicksalon/quicksalon1.png","./projects/quicksalon/quicksalon2.png","./projects/quicksalon/quicksalon3.png","./projects/quicksalon/quicksalon4.png"],
     points: [
       "Real-time appointment booking system.",
       "Location-based salon discovery.",

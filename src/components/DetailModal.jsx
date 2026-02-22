@@ -11,6 +11,12 @@ import {
     Chip,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 export default function DetailModal({ open, onClose, project }) {
     if (!project) return null;
@@ -43,18 +49,34 @@ export default function DetailModal({ open, onClose, project }) {
             </DialogTitle>
 
             <DialogContent dividers>
-                {/* Image */}
-                <Box
-                    component="img"
-                    src={project.image}
-                    alt={project.title}
-                    sx={{
-                        width: "100%",
-                        borderRadius: 2,
-                        mb: 3,
-                    }}
-                />
-
+                {/* 🔥 Image Slider */}
+                {project.images?.length > 0 && (
+                    <Box sx={{ mb: 3, borderRadius: 2, overflow: "hidden" }}>
+                        <Swiper
+                            modules={[Autoplay, Pagination, Navigation]}
+                            slidesPerView={1}
+                            loop
+                            autoplay={{ delay: 3000 }}
+                            pagination={{ clickable: true }}
+                            navigation
+                        >
+                            {project.images.map((img, index) => (
+                                <SwiperSlide key={index}>
+                                    <Box
+                                        component="img"
+                                        src={img}
+                                        alt={`slide-${index}`}
+                                        sx={{
+                                            width: "100%",
+                                            // height: { xs: 220, md: 450 },
+                                            objectFit: "cover",
+                                        }}
+                                    />
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    </Box>
+                )}
                 {/* Description */}
                 <Typography sx={{ mb: 2 }}>
                     {project.description}
