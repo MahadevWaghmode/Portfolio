@@ -8,8 +8,24 @@ import {
   Chip,
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import { useState } from "react";
+import { ArrowOutwardOutlined } from "@mui/icons-material";
+import DetailModal from "./DetailModal";
 
 export default function ProjectCard({ project }) {
+
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = (project) => {
+    setSelectedProject(project);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Card
       sx={(theme) => ({
@@ -69,16 +85,26 @@ export default function ProjectCard({ project }) {
         {/* Description Points */}
         <Box component="ul" sx={{ pl: 2, mb: 2 }}>
           {project.points?.length ? (
-            project.points.map((pt, idx) => (
-              <Typography
-                key={idx}
-                component="li"
-                variant="body2"
-                sx={{ mb: 0.8, lineHeight: 1.6 }}
-              >
-                {pt}
-              </Typography>
-            ))
+            <>
+              {project.points.slice(0, 3).map((pt, idx) => (
+                <Typography
+                  key={idx}
+                  component="li"
+                  variant="body2"
+                  sx={{ mb: 0.8, lineHeight: 1.6 }}
+                >
+                  {pt} {idx >1 && (
+                    <Box component="span"
+                    color="primary.main"
+                    >
+                      ...
+                    </Box>
+                  )}
+                </Typography>
+              ))}
+
+
+            </>
           ) : (
             <Typography variant="body2" color="text.secondary">
               No project details available.
@@ -135,8 +161,9 @@ export default function ProjectCard({ project }) {
             View Code
           </Button>
           <Button
-          variant="outlined"
-          disabled
+            variant="outlined"
+            endIcon={<ArrowOutwardOutlined />}
+            onClick={() => handleOpen(project)}
             sx={(theme) => ({
               textTransform: "none",
               fontWeight: 600,
@@ -147,11 +174,17 @@ export default function ProjectCard({ project }) {
               },
             })}
           >
-            Live Preview
+            Details
           </Button>
 
         </Stack>
       </CardContent>
+
+      <DetailModal
+        open={open}
+        onClose={handleClose}
+        project={selectedProject}
+      />
     </Card>
   );
 }
